@@ -1,0 +1,66 @@
+; Copyright (c) 2022 Clément Joly. All rights reserved.
+;
+; Licensed under the Apache License, Version 2.0 (the "License");
+; you may not use this file except in compliance with the License.
+; You may obtain a copy of the License at
+;
+;     http://www.apache.org/licenses/LICENSE-2.0
+;
+; Unless required by applicable law or agreed to in writing, software
+; distributed under the License is distributed on an "AS IS" BASIS,
+; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+; See the License for the specific language governing permissions and
+; limitations under the License.
+;
+account Y
+
+account Assets:Current:Testé
+  alias AliasTesté ; Test
+
+account Non Alias:With Space:Assets:Testé2
+
+account Assets:Current:1
+  alias One
+
+alias One1=Assets:Current:1
+
+payee John Doe
+  uuid 03a913bc-1667-4cfc-b365-abd59c35a06f
+
+commodity USD
+  alias $
+
+# Check that comments are ignored
+comment
+# TODO Actually ignore that one
+commodity INVALID_1
+end comment
+; commodity INVALID_2
+# commodity INVALID_3
+% commodity INVALID_4
+* commodity INVALID_5
+| commodity INVALID_6
+
+tag UUID
+
+2022-05-16 * Payee1
+  ; UUID: 03a913bc-1667-4cfc-b365-abd59c35a06f
+  Assets:Current:Testé   $1
+  One
+
+define val=$10
+
+tag Test Tag
+
+2022-05-16 * Payee1
+  ; :Test Tag:
+  Non Alias:With Space:Assets:Testé2   (val*2 USD)
+  One1
+
+account After
+  alias Aft
+
+2022-05-16 * Payee1
+  Aft   (val*2 USD)
+  One1
+

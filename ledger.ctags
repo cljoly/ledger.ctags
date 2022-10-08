@@ -1,0 +1,49 @@
+# Copyright (c) 2022 Clément Joly. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Based on https://www.ledger-cli.org/3.0/doc/ledger3.html#Command-Directives
+--langdef=Ledger
+--map-Ledger=+.ledger
+--map-Ledger=+.ldg
+--map-Ledger=+.journal
+
+# --kinddef-Ledger=<letter>,<name>,<description>
+# --regex-Ledger=/<line_pattern>/<name_pattern>/<kind-spec>/[<flags>]
+
+# ;#%|* are the start of comment chars
+--regex-Ledger=/^[:digit:]+///{scope=clear}{placeholder}
+--regex-Ledger=/^end$///{scope=clear}{placeholder}
+
+--kinddef-Ledger=a,account,Account
+--regex-Ledger=/^account[ \t]+([^ ]([^;#%|*] ?)*)/\1/a/{scope=set}
+
+--kinddef-Ledger=l,alias,Alias
+--regex-Ledger=/^alias[ \t]+([^ ]([^;#%|*=] ?)*)=/\1/l/{scope=clear}
+# Inline alias, difficult to know the type, so let’s put it to alias and use the scope stack to provide more info to the user
+--regex-Ledger=/^[ \t]+alias[ \t]+([^ ]([^;#%|*] ?)*)/\1/l/
+
+--kinddef-Ledger=c,commodity,Commodity
+--regex-Ledger=/^commodity[ \t]+([^ ]([^;#%|*] ?)*)/\1/c/{scope=set}
+
+--kinddef-Ledger=p,payee,Payee
+--regex-Ledger=/^payee[ \t]+([^ ]([^;#%|*] ?)*)/\1/p/{scope=set}
+
+--kinddef-Ledger=u,uuid,UUID
+--regex-Ledger=/^[ \t]+uuid[ \t]+([^ ]+)/\1/u/
+
+--kinddef-Ledger=t,tag,Tag
+--regex-Ledger=/^tag[ \t]+([^ ]([^;#%|*] ?)*)/\1/t/
+
+--kinddef-Ledger=d,define,Value expression
+--regex-Ledger=/^define[ \t]+([^ ][^;#%|*=]*)/\1/d/{scope=set}
