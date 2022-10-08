@@ -6,3 +6,15 @@ Then run
 ```
 ctags my/ledger/journal.ldg
 ```
+
+## Automatic Update with Chezmoi
+
+Chezmoi [external](https://www.chezmoi.io/reference/special-files-and-directories/chezmoiexternal-format/) feature allows you to auto update and manage the `ledger.ctags` file, by adding the following to your `~/.local/share/chezmoi/.chezmoiexternal.toml`:
+
+```toml
+[".config/ctags/"]
+    type = "archive"
+    include = [ "*/ledger.ctags" ]
+    url = "https://github.com/cljoly/ledger.ctags/archive/master.zip/"
+    stripComponents = 1
+```
