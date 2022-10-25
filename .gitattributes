@@ -1,0 +1,2 @@
+*.ctags linguist-detectable
+Makefile -linguist-detectable
