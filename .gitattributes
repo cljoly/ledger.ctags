@@ -1,2 +1,2 @@
-*.ctags linguist-detectable
+*.ctags linguist-detectable linguist-language=conf
 Makefile -linguist-detectable
