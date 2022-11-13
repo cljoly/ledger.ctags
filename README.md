@@ -1,16 +1,64 @@
-# Ledger.ctags: [Ctags](https://ctags.io/) file for [ledger](https://ledger-cli.org/) (“ledger-cli”)
+<!-- insert
+---
+title: "Ledger.ctags"
+date: 2022-08-21T08:15:54
+description: "Ctags file for ledger-cli"
+tags:
+- Open Source
+- Tools
+- Ledger
+- Ctags
+---
+{{< github_badge >}}
+{{< rawhtml >}}
+<div class="badges">
+{{< /rawhtml >}}
+end_insert -->
+<!-- Powered by https://cj.rs/riss -->
 
-In compatible editors (Atom, VS Code, TextMate, vim, neovim, Emacs and [more][editors]), this gives completion and jump to definition for accounts, payee, commodities, tags, aliases.
+<!-- remove -->
+# Ledger.ctags
+<!-- end_remove -->
+
+[![](https://img.shields.io/badge/powered%20by-riss-lightgrey)](https://cj.rs/riss)
+
+<!-- insert
+{{< rawhtml >}}
+</div>
+{{< /rawhtml >}}
+end_insert -->
+
+This gives completion and jump to definition for declared accounts, payee, commodities, tags, aliases… in compatible editors (Atom, VS Code, TextMate, vim, neovim, Emacs and [more][editors]). Works with [ledger][] and most of its variants.
 
 ## Installation
 
 You need to have [ctags][] installed[^1].
 
-Then just drop [`ledger.ctags`](https://github.com/cljoly/ledger.ctags/blob/main/ledger.ctags) in `~/.config/ctags` (or whatever `ctags` is configured to read).
+Then just drop [`ledger.ctags`](https://raw.githubusercontent.com/cljoly/ledger.ctags/main/ledger.ctags) in `~/.config/ctags` (or whatever `ctags` is configured to read).
 
-Then run
+## Usage
+
 ```
 ctags my/ledger/journal.ldg
+```
+will collect all the elements [declared][declaration] in the journal file. This means that in the following file
+```ledger
+tag UUID
+account Assets
+payee Shop
+commodity EUR
+
+2022-01-01 * Someone
+    Expenses:Food   $10
+    Liabilities:Credit Card
+```
+only `UUID`, `Assets`, `Shop` and `EUR` are detected, because they are the only one declared and so the only ones with a definition to jump to. `Someone`, `Expenses`, `Expenses:Food`, `$`, `Liabilities` and `Liabilities:Credit  Card` are not declared, so they are ignored by ctags.
+
+### Multiple files
+
+If you have multiple ledger journal files, pass them all to ctags or run it on the directory:
+```sh
+ctags -R .
 ```
 
 ## Automatic Update with Chezmoi
@@ -29,5 +77,7 @@ and see your editor’s documentation for ways to integrate ctags.
 
 [editors]: https://en.wikipedia.org/wiki/Ctags#Editors_that_support_ctags
 [ctags]: https://ctags.io/
+[ledger]: https://ledger-cli.org/
+[declaration]: https://www.ledger-cli.org/3.0/doc/ledger3.html#index-pre_002ddeclare-account
 
 [^1]: Another implementation may work, but it’s untested. Feel free to send a PR though!
