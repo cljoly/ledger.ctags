@@ -75,6 +75,14 @@ Chezmoi [external](https://www.chezmoi.io/reference/special-files-and-directorie
 
 and see your editor’s documentation for ways to integrate ctags.
 
+## Contributing
+
+Contributions (documentation or code improvements in particular) are welcome, see [contributing](https://cj.rs/docs/contribute/)!
+
+## Acknowledgments
+
+I would like to thank the creators and all the contributors to [ctags][] and [ledger][]. This is small configuration to make these two great projects work better together.
+
 [editors]: https://en.wikipedia.org/wiki/Ctags#Editors_that_support_ctags
 [ctags]: https://ctags.io/
 [ledger]: https://ledger-cli.org/
