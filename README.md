@@ -3,6 +3,8 @@
 title: "Ledger.ctags"
 date: 2022-08-21T08:15:54
 description: "Ctags file for ledger-cli"
+aliases:
+- /ledger.ctags
 tags:
 - Open Source
 - Tools
