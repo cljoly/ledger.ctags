@@ -20,7 +20,11 @@ end_insert -->
 # Ledger.ctags
 <!-- end_remove -->
 
-This gives completion and jump to definition for declared accounts, payee, commodities, tags, aliases… in compatible editors (Atom, VS Code, TextMate, vim, neovim, Emacs and [more][editors]). Works with [ledger][] and most of its variants.
+If you are using [Ledger][ledger] or one of its variants for your [plain text accounting][pta], you get to manage your finances a bit more like you manage code. With plain text files, in your favorite editor.
+
+And yet, as opposed to code in most languages, you don’t have a [Language Server Protocol implementation][lsp]. So it’s a bit harder to get completions on accounts, tags, payees… You have to rely on bespoken support from your editor and that’s often imperfect or slow. Plus, if you [declare][declaration] your accounts and payees, you also can’t jump to the definition easily.
+
+Enter ctags configuration for ledger, which this project provides. It generates `tag` file that’s understood by your editor, often out of the box ([vim/neovim][vim_tag_intro], [emacs][emacs_support]) or with a generic plugin (Atom, VS Code, TextMate and [more][editors]). Congrats, your editor now has very fast completions and code navigation!
 
 ## Installation
 
@@ -33,7 +37,7 @@ Then just drop [`ledger.ctags`](https://raw.githubusercontent.com/cljoly/ledger.
 ```
 ctags my/ledger/journal.ldg
 ```
-will collect all the elements [declared][declaration] in the journal file. This means that in the following file
+will collect all the elements formally [declared][declaration] in the journal file. This means that in the following file:
 ```ledger
 tag UUID
 account Assets
@@ -48,7 +52,7 @@ only `UUID`, `Assets`, `Shop` and `EUR` are detected, because they are the only 
 
 ### Initial List of Accounts, Payees…
 
-As mentioned, only the elements that are declared are collected by ctags. You could fill this by hand, if you want to have fine control of which accounts you want to use and have completion for. But to ease initial bootstrapping, you may want to start by adding everything you currently use.
+As mentioned, ctags only collects elements that are declared. You could write the declarations manually, if you want to have fine-grained control of which accounts you want to actively use and have completions for. But to ease initial bootstrapping, you may want to start by adding everything you currently use in your ledger journals. You can do that with a couple commands.
 
 For accounts, you can use this bash snippet:
 ```
@@ -71,7 +75,7 @@ Don’t forget that ctags does not follow includes, so you should pass the file 
 
 ### Multiple files
 
-If you have multiple ledger journal files, pass them all to ctags or run it on the directory:
+If you have multiple ledger journal files, pass them all to ctags (e.g. `ctags *.ledger *.ldg`) or run it on the current directory:
 ```sh
 ctags -R .
 ```
@@ -89,8 +93,6 @@ Chezmoi [external](https://www.chezmoi.io/reference/special-files-and-directorie
     url = "https://github.com/cljoly/ledger.ctags/archive/master.zip/"
     stripComponents = 1
 ```
-
-and see your editor’s documentation for ways to integrate ctags.
 
 ## Contributing
 
@@ -120,5 +122,9 @@ end_insert -->
 [ctags]: https://ctags.io/
 [ledger]: https://ledger-cli.org/
 [declaration]: https://www.ledger-cli.org/3.0/doc/ledger3.html#index-pre_002ddeclare-account
+[pta]: https://plaintextaccounting.org/
+[emacs_support]: https://www.gnu.org/software/emacs/manual/html_node/emacs/Tags-Tables.html
+[vim_tag_intro]: https://vimhelp.org/usr_29.txt.html#29.1
+[lsp]: https://microsoft.github.io/language-server-protocol/
 
 [^1]: Another implementation may work, but it’s untested. Feel free to send a PR though!
