@@ -10,25 +10,15 @@ tags:
 - Tools
 - Ledger
 - Ctags
+repo_url: https://github.com/cljoly/ledger.ctags
 ---
 {{< github_badge >}}
-{{< rawhtml >}}
-<div class="badges">
-{{< /rawhtml >}}
 end_insert -->
 <!-- Powered by https://cj.rs/riss -->
 
 <!-- remove -->
 # Ledger.ctags
 <!-- end_remove -->
-
-[![](https://img.shields.io/badge/powered%20by-riss-lightgrey)](https://cj.rs/riss)
-
-<!-- insert
-{{< rawhtml >}}
-</div>
-{{< /rawhtml >}}
-end_insert -->
 
 This gives completion and jump to definition for declared accounts, payee, commodities, tags, aliases… in compatible editors (Atom, VS Code, TextMate, vim, neovim, Emacs and [more][editors]). Works with [ledger][] and most of its variants.
 
@@ -63,6 +53,8 @@ If you have multiple ledger journal files, pass them all to ctags or run it on t
 ctags -R .
 ```
 
+********************************************************************************
+
 ## Automatic Update with Chezmoi
 
 Chezmoi [external](https://www.chezmoi.io/reference/special-files-and-directories/chezmoiexternal-format/) feature allows you to auto update and manage the `ledger.ctags` file, by adding the following to your `~/.local/share/chezmoi/.chezmoiexternal.toml`:
@@ -83,7 +75,21 @@ Contributions (documentation or code improvements in particular) are welcome, se
 
 ## Acknowledgments
 
-I would like to thank the creators and all the contributors to [ctags][] and [ledger][]. This is small configuration to make these two great projects work better together.
+I would like to thank the creators, and all the contributors, of [ctags][] and [ledger][]. This is small configuration to make these two great projects work better together.
+
+<!-- insert
+{{< rawhtml >}}
+<div class="badges">
+{{< /rawhtml >}}
+end_insert -->
+
+[![](https://img.shields.io/badge/powered%20by-riss-lightgrey)](https://cj.rs/riss)
+
+<!-- insert
+{{< rawhtml >}}
+</div>
+{{< /rawhtml >}}
+end_insert -->
 
 [editors]: https://en.wikipedia.org/wiki/Ctags#Editors_that_support_ctags
 [ctags]: https://ctags.io/
