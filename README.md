@@ -46,6 +46,29 @@ commodity EUR
 ```
 only `UUID`, `Assets`, `Shop` and `EUR` are detected, because they are the only one declared and so the only ones with a definition to jump to. `Someone`, `Expenses`, `Expenses:Food`, `$`, `Liabilities` and `Liabilities:Credit  Card` are not declared, so they are ignored by ctags.
 
+### Initial List of Accounts, Payees…
+
+As mentioned, only the elements that are declared are collected by ctags. You could fill this by hand, if you want to have fine control of which accounts you want to use and have completion for. But to ease initial bootstrapping, you may want to start by adding everything you currently use.
+
+For accounts, you can use this bash snippet:
+```
+ledger accounts | awk '{ print "account", $0}'
+```
+
+For payees:
+```
+ledger payees | awk '{ print "payee", $0}'
+```
+
+For tags:
+```
+ledger tags | awk '{ print "tag", $0}'
+```
+
+The snippets above output proper ledger definitions for accounts, payees and tags. You can insert these outputs in your journal or in a separate file with all your declarations (say `declarations.ledger`), that you can then `include` in your main journal file.
+
+Don’t forget that ctags does not follow includes, so you should pass the file with the definitions to ctags (e.g. `ctags declarations.ledger`)
+
 ### Multiple files
 
 If you have multiple ledger journal files, pass them all to ctags or run it on the directory:
@@ -72,6 +95,8 @@ and see your editor’s documentation for ways to integrate ctags.
 ## Contributing
 
 Contributions (documentation or code improvements in particular) are welcome, see [contributing](https://cj.rs/docs/contribute/)!
+
+Feel free [to fill an issue](https://github.com/cljoly/ledger.ctags/issues/new) if your *declared* accounts, tags, payee, alias… are not properly detected.
 
 ## Acknowledgments
 
