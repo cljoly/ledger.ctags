@@ -30,7 +30,7 @@ Enter ctags configuration for ledger, which this project provides. It generates 
 
 You need to have [ctags][] installed[^1].
 
-Then just drop [`ledger.ctags`](https://raw.githubusercontent.com/cljoly/ledger.ctags/main/ledger.ctags) in `~/.config/ctags` (or whatever `ctags` is configured to read).
+Then drop [`ledger.ctags`](https://raw.githubusercontent.com/cljoly/ledger.ctags/main/ledger.ctags) in `~/.config/ctags` (or whatever `ctags` is configured to read).
 
 ## Usage
 
